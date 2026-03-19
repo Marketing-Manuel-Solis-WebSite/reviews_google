@@ -1,6 +1,6 @@
 "use client";
 
-import { Phone, Star, MapPin, ArrowUpRight } from "lucide-react";
+import { Phone, Star, ArrowUpRight } from "lucide-react";
 import {
   SITE_NAME,
   TODO_PHONE,
@@ -62,7 +62,7 @@ export function Footer() {
         </div>
 
         {/* ── Links grid ── */}
-        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 mb-12">
           {/* Nav */}
           <div>
             <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-gold/50 mb-4">
@@ -72,7 +72,6 @@ export function Footer() {
               {[
                 { label: "Reviews", href: "#reviews" },
                 { label: t("footer.cases"), href: "#casos" },
-                { label: t("nav.offices"), href: "#oficinas" },
                 { label: t("nav.contact"), href: "#contacto" },
               ].map((link) => (
                 <a
@@ -87,26 +86,6 @@ export function Footer() {
                   />
                 </a>
               ))}
-            </div>
-          </div>
-
-          {/* Offices quick list */}
-          <div>
-            <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-gold/50 mb-4">
-              {t("nav.offices")}
-            </p>
-            <div className="flex flex-col gap-2.5">
-              {["Houston", "Dallas", "El Paso", "Chicago", "Los Angeles", "Denver"].map(
-                (city) => (
-                  <span
-                    key={city}
-                    className="text-white/30 text-sm flex items-center gap-1.5"
-                  >
-                    <MapPin size={9} className="text-gold/30" />
-                    {city}
-                  </span>
-                )
-              )}
             </div>
           </div>
 

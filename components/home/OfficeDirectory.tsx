@@ -147,9 +147,6 @@ export function OfficeDirectory() {
                             className="text-gold/40 group-hover:text-gold transition-colors shrink-0 mt-0.5"
                           />
                         </div>
-                        <p className="text-muted/50 text-xs leading-relaxed mb-2.5">
-                          {office.address}
-                        </p>
                         <a
                           href={`tel:${office.phone}`}
                           className="flex items-center gap-1.5 text-xs text-navy/60 hover:text-gold transition-colors mb-1.5"

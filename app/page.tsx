@@ -5,12 +5,14 @@ import { SocialProofBand } from "@/components/home/SocialProofBand";
 import { ReviewsSection } from "@/components/home/ReviewsSection";
 import { FeaturedReview } from "@/components/home/FeaturedReview";
 import { SuccessStories } from "@/components/home/SuccessStories";
-import { OfficeDirectory } from "@/components/home/OfficeDirectory";
 import { ContactCTA } from "@/components/home/ContactCTA";
+import { PhotoGallery } from "@/components/home/PhotoGallery";
+import { FloatingBlobs } from "@/components/ui/FloatingBlobs";
 
 export default function Home() {
   return (
     <>
+      <FloatingBlobs />
       <Navbar />
       <main id="main-content">
         <Hero />
@@ -18,7 +20,7 @@ export default function Home() {
         <ReviewsSection />
         <FeaturedReview />
         <SuccessStories />
-        <OfficeDirectory />
+        <PhotoGallery />
         <ContactCTA />
       </main>
       <Footer />

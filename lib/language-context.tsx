@@ -125,6 +125,14 @@ const T: Record<string, Record<Lang, string>> = {
     en: "Constant attention and communication throughout the case",
   },
 
+  /* ── Gallery ── */
+  "gallery.label": { es: "Nuestras Familias", en: "Our Families" },
+  "gallery.title": { es: "Rostros de Confianza", en: "Faces of Trust" },
+  "gallery.subtitle": {
+    es: "Cada imagen representa una familia que confió en nosotros.",
+    en: "Each image represents a family that trusted us.",
+  },
+
   /* ── Offices ── */
   "offices.label": { es: "Cobertura Nacional", en: "National Coverage" },
   "offices.title": { es: "Nuestras Oficinas", en: "Our Offices" },

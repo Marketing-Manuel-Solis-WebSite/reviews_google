@@ -12,7 +12,6 @@ export function Navbar() {
   const NAV_LINKS = [
     { label: t("nav.reviews"), href: "#reviews" },
     { label: t("nav.cases"), href: "#casos" },
-    { label: t("nav.offices"), href: "#oficinas" },
     { label: t("nav.contact"), href: "#contacto" },
   ];
 
