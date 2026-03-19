@@ -1,23 +1,44 @@
 import type { Metadata } from "next";
-import { Playfair_Display, DM_Sans } from "next/font/google";
+import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { SkipToContent } from "@/components/site/SkipToContent";
+import { LanguageProvider } from "@/lib/language-context";
+import { TODO_CANONICAL_URL } from "@/content/constants";
 import "./globals.css";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Abogados Manuel Solis | Reuniendo Familias con Reputación Comprobada",
+  title: "Manuel Solis Law Firm | La Confianza Se Comprueba",
   description:
-    "Más de 35 años de experiencia en inmigración. 15+ oficinas en EE.UU. Consulta con el bufete de abogados que ha reunido más de 50,000 familias.",
+    "Más de 35 años reuniendo familias. 15+ oficinas en EE.UU. Reseñas reales verificadas en Google de miles de familias que confiaron en nosotros.",
+  metadataBase: new URL(TODO_CANONICAL_URL),
+  openGraph: {
+    title: "Manuel Solis Law Firm | La Confianza Se Comprueba",
+    description:
+      "Más de 35 años reuniendo familias. Reseñas reales verificadas en Google, oficina por oficina.",
+    type: "website",
+    locale: "es_US",
+    siteName: "Manuel Solis Law Firm",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Manuel Solis Law Firm | La Confianza Se Comprueba",
+    description:
+      "Más de 35 años reuniendo familias. Reseñas reales verificadas en Google.",
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
@@ -28,9 +49,13 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${playfair.variable} ${dmSans.variable} antialiased`}
+        className={`${cormorant.variable} ${manrope.variable} antialiased`}
       >
-        {children}
+        <LanguageProvider>
+          <SkipToContent />
+          <JsonLd />
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );
