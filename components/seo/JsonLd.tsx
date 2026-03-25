@@ -28,6 +28,8 @@ export function JsonLd() {
     description:
       "Bufete de abogados de inmigración con más de 35 años de experiencia reuniendo familias. 15+ oficinas en Estados Unidos. Especialistas en residencia permanente, green card, ciudadanía, visas, asilo, DACA y defensa de deportación.",
     url: MAIN_SITE_URL,
+    logo: `${CANONICAL_URL}/logo_manuelsolis.png`,
+    image: `${CANONICAL_URL}/og-image.jpg`,
     telephone: PHONE,
     foundingDate: "1990",
     numberOfEmployees: { "@type": "QuantitativeValue", minValue: 50 },
@@ -48,7 +50,7 @@ export function JsonLd() {
         position: i + 1,
         name: s.en,
         description: s.es,
-        url: `${MAIN_SITE_URL}${s.path}`,
+        url: `${MAIN_SITE_URL}/es/servicios/${s.slug}`,
       })),
     },
     sameAs: [
@@ -118,7 +120,7 @@ export function JsonLd() {
     return {
       "@context": "https://schema.org",
       "@type": "LegalService",
-      "@id": `${MAIN_SITE_URL}/oficina/${office.slug}`,
+      "@id": `${MAIN_SITE_URL}/es/oficinas/${office.slug}`,
       name: `${SITE_NAME} — ${office.name}`,
       parentOrganization: { "@id": `${MAIN_SITE_URL}/#organization` },
       telephone: office.phone,
@@ -135,7 +137,7 @@ export function JsonLd() {
         longitude: office.lng,
       },
       openingHours: office.hours,
-      url: `${MAIN_SITE_URL}/oficina/${office.slug}`,
+      url: `${MAIN_SITE_URL}/es/oficinas/${office.slug}`,
       ...(officeReviews.length > 0 && {
         aggregateRating: {
           "@type": "AggregateRating",
@@ -235,7 +237,18 @@ export function JsonLd() {
     ],
   };
 
-  /* ── 6. WebPage ── */
+  /* ── 6. WebSite ── */
+  const website = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${CANONICAL_URL}/#website`,
+    url: CANONICAL_URL,
+    name: `Reseñas Verificadas — ${SITE_NAME}`,
+    publisher: { "@id": `${MAIN_SITE_URL}/#organization` },
+    inLanguage: ["es", "en"],
+  };
+
+  /* ── 7. WebPage ── */
   const webpage = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -244,11 +257,7 @@ export function JsonLd() {
       "Reseñas reales verificadas en Google de familias que confiaron en el Abogado Manuel Solis. 35+ años, 50,000+ familias reunidas, 15+ oficinas en EE.UU.",
     url: CANONICAL_URL,
     inLanguage: ["es", "en"],
-    isPartOf: {
-      "@type": "WebSite",
-      url: MAIN_SITE_URL,
-      name: SITE_NAME,
-    },
+    isPartOf: { "@id": `${CANONICAL_URL}/#website` },
     about: { "@id": `${MAIN_SITE_URL}/#organization` },
     mainEntity: { "@id": `${MAIN_SITE_URL}/#organization` },
   };
@@ -259,6 +268,7 @@ export function JsonLd() {
     ...localBusinesses,
     faq,
     breadcrumb,
+    website,
     webpage,
   ];
 

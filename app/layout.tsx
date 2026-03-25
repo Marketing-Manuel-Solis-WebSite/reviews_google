@@ -70,13 +70,33 @@ export const metadata: Metadata = {
     alternateLocale: "en_US",
     siteName: SITE_NAME,
     url: CANONICAL_URL,
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Manuel Solis Law Firm — Abogados de Inmigración",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Abogados de Inmigración | Manuel Solis Law Firm",
     description:
       "35+ años reuniendo familias. 50,000+ familias. Reseñas verificadas en Google.",
+    images: ["/og-image.jpg"],
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180" },
+    ],
+  },
+  manifest: "/site.webmanifest",
   robots: { index: true, follow: true },
 };
 

@@ -7,7 +7,6 @@ import {
   PHONE_DISPLAY,
   MAIN_SITE_URL,
   SERVICES,
-  SOCIAL,
 } from "@/content/constants";
 import { OFFICES } from "@/content/offices";
 import { useLanguage, type Lang } from "@/lib/language-context";
@@ -125,7 +124,7 @@ export function Footer() {
               {SERVICES.map((svc) => (
                 <a
                   key={svc.key}
-                  href={`${MAIN_SITE_URL}${svc.path}`}
+                  href={`${MAIN_SITE_URL}/${lang}/servicios/${svc.slug}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/40 text-[13px] hover:text-gold transition-colors duration-300 flex items-center gap-1 group"
@@ -154,7 +153,7 @@ export function Footer() {
               {houstonOffices.map((o) => (
                 <a
                   key={o.id}
-                  href={`${MAIN_SITE_URL}/oficina/${o.slug}`}
+                  href={`${MAIN_SITE_URL}/${lang}/oficinas/${o.slug}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/35 text-[12px] hover:text-gold transition-colors flex items-center gap-1"
@@ -173,7 +172,7 @@ export function Footer() {
               {texasOffices.map((o) => (
                 <a
                   key={o.id}
-                  href={`${MAIN_SITE_URL}/oficina/${o.slug}`}
+                  href={`${MAIN_SITE_URL}/${lang}/oficinas/${o.slug}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/35 text-[12px] hover:text-gold transition-colors flex items-center gap-1"
@@ -192,7 +191,7 @@ export function Footer() {
               {nationalOffices.map((o) => (
                 <a
                   key={o.id}
-                  href={`${MAIN_SITE_URL}/oficina/${o.slug}`}
+                  href={`${MAIN_SITE_URL}/${lang}/oficinas/${o.slug}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/35 text-[12px] hover:text-gold transition-colors flex items-center gap-1"
@@ -221,32 +220,6 @@ export function Footer() {
               <p className="text-white/25 text-[10px]">
                 Google {t("reviews.title")}
               </p>
-            </div>
-
-            <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-gold/50 mb-4">
-              {t("footer.followUs")}
-            </p>
-            <div className="flex flex-col gap-2">
-              {SOCIAL.facebook && (
-                <a href={SOCIAL.facebook} target="_blank" rel="noopener noreferrer" className="text-white/35 text-[12px] hover:text-gold transition-colors">
-                  Facebook
-                </a>
-              )}
-              {SOCIAL.instagram && (
-                <a href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer" className="text-white/35 text-[12px] hover:text-gold transition-colors">
-                  Instagram
-                </a>
-              )}
-              {SOCIAL.youtube && (
-                <a href={SOCIAL.youtube} target="_blank" rel="noopener noreferrer" className="text-white/35 text-[12px] hover:text-gold transition-colors">
-                  YouTube
-                </a>
-              )}
-              {SOCIAL.tiktok && (
-                <a href={SOCIAL.tiktok} target="_blank" rel="noopener noreferrer" className="text-white/35 text-[12px] hover:text-gold transition-colors">
-                  TikTok
-                </a>
-              )}
             </div>
 
             <a

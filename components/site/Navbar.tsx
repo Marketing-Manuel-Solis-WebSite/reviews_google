@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Menu, X, Star } from "lucide-react";
 import { SITE_NAME } from "@/content/constants";
 import { useLanguage } from "@/lib/language-context";
@@ -23,11 +24,15 @@ export function Navbar() {
         aria-label={lang === "en" ? "Main navigation" : "Navegación principal"}
       >
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-          <a
-            href="#inicio"
-            className="font-serif text-lg tracking-[0.06em] font-semibold text-navy"
-          >
-            {SITE_NAME}
+          <a href="#inicio" className="flex items-center">
+            <Image
+              src="/logo_manuelsolis.png"
+              alt={SITE_NAME}
+              width={200}
+              height={50}
+              className="h-12 w-auto"
+              priority
+            />
           </a>
 
           <div className="hidden lg:flex items-center gap-8">

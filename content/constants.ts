@@ -28,14 +28,14 @@ export const STATS: Stat[] = [
 ];
 
 export const SERVICES = [
-  { key: "residencia", es: "Residencia Permanente", en: "Permanent Residency", path: "/residencia-permanente" },
-  { key: "ciudadania", es: "Ciudadanía Americana", en: "U.S. Citizenship", path: "/ciudadania" },
-  { key: "greencard", es: "Green Card", en: "Green Card", path: "/green-card" },
-  { key: "visas", es: "Visas de Trabajo", en: "Work Visas", path: "/visas-de-trabajo" },
-  { key: "familiar", es: "Peticiones Familiares", en: "Family Petitions", path: "/peticiones-familiares" },
-  { key: "asilo", es: "Asilo y Refugio", en: "Asylum & Refuge", path: "/asilo" },
-  { key: "daca", es: "DACA / Dreamers", en: "DACA / Dreamers", path: "/daca" },
-  { key: "deportacion", es: "Defensa de Deportación", en: "Deportation Defense", path: "/defensa-deportacion" },
-  { key: "consular", es: "Procesos Consulares", en: "Consular Processing", path: "/procesos-consulares" },
-  { key: "permisos", es: "Permisos de Trabajo", en: "Work Permits", path: "/permisos-de-trabajo" },
+  { key: "inmigracion", es: "Inmigración", en: "Immigration", slug: "inmigracion" },
+  { key: "accidentes", es: "Accidentes", en: "Accidents", slug: "accidentes" },
+  { key: "ley-criminal", es: "Ley Criminal", en: "Criminal Law", slug: "ley-criminal" },
+  { key: "familia", es: "Familia", en: "Family", slug: "familia" },
+  { key: "seguros", es: "Seguros", en: "Insurance", slug: "seguros" },
+  { key: "visa-u", es: "Visa U", en: "U Visa", slug: "visa-u" },
+  { key: "visa-e2", es: "Visa E-2", en: "E-2 Visa", slug: "visa-e2" },
+  { key: "vawa", es: "VAWA", en: "VAWA", slug: "vawa" },
+  { key: "defensa-deportacion", es: "Defensa de Deportación", en: "Deportation Defense", slug: "defensa-deportacion" },
+  { key: "asilo", es: "Asilo", en: "Asylum", slug: "asilo" },
 ] as const;
