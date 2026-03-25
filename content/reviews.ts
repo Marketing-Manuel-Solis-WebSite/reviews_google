@@ -20,7 +20,7 @@ export const REVIEWS: Review[] = [
     rating: 5,
     datePublished: "2026-02-18",
     text: "Im very grateful with God that after all these years I finally got my green card and that is thanks to the Manuel Solis lawyers. Especial thanks to Elizabeth Vazquez and Cesar Benitez for helping me out all these years. Its been a long process but worth it at the end.",
-    googleUrl: "https://share.google/IQ5vOOn9q0Vc617Ww",
+    // TODO: reemplazar con URL correcta de maps.app.goo.gl cuando esté disponible
   },
   {
     id: "r-har",
@@ -51,7 +51,7 @@ export const REVIEWS: Review[] = [
     rating: 5,
     datePublished: "2026-02-18",
     text: "Gracias a las oficinas del abogado Manuel Solis obtuve mi residencia y proceso fue todo éxito. Agradezco la atención de la oficina de Denver y al asistente Ewdor.",
-    googleUrl: "https://share.google/kkznzXsqhwz4FnfYI",
+    // TODO: reemplazar con URL correcta de maps.app.goo.gl cuando esté disponible
   },
   {
     id: "r-mem",

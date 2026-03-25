@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, X, Phone } from "lucide-react";
-import { SITE_NAME, TODO_PHONE } from "@/content/constants";
+import { Menu, X, Star } from "lucide-react";
+import { SITE_NAME } from "@/content/constants";
 import { useLanguage } from "@/lib/language-context";
 
 export function Navbar() {
@@ -12,6 +12,7 @@ export function Navbar() {
   const NAV_LINKS = [
     { label: t("nav.reviews"), href: "#reviews" },
     { label: t("nav.cases"), href: "#casos" },
+    { label: t("nav.offices"), href: "#oficinas" },
     { label: t("nav.contact"), href: "#contacto" },
   ];
 
@@ -19,7 +20,7 @@ export function Navbar() {
     <>
       <nav
         className="fixed top-0 inset-x-0 z-50 nav-glass py-3"
-        aria-label="Navegación principal"
+        aria-label={lang === "en" ? "Main navigation" : "Navegación principal"}
       >
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
           <a
@@ -66,11 +67,11 @@ export function Navbar() {
             </div>
 
             <a
-              href={`tel:${TODO_PHONE}`}
+              href="#reviews"
               className="inline-flex items-center gap-2 text-[13px] font-semibold px-5 py-2.5 rounded-full bg-navy text-white hover:bg-navy-light transition-colors duration-300"
             >
-              <Phone size={13} />
-              {t("nav.call")}
+              <Star size={13} />
+              {t("hero.cta1")}
             </a>
           </div>
 
@@ -97,7 +98,7 @@ export function Navbar() {
             <button
               className="text-navy/60 hover:text-navy transition-colors"
               onClick={() => setOpen(true)}
-              aria-label="Abrir menú"
+              aria-label={lang === "en" ? "Open menu" : "Abrir menú"}
             >
               <Menu size={22} />
             </button>
@@ -109,12 +110,12 @@ export function Navbar() {
         <div
           className="fixed inset-0 z-[60] bg-ivory flex flex-col items-center justify-center gap-8"
           role="dialog"
-          aria-label="Menú de navegación"
+          aria-label={lang === "en" ? "Navigation menu" : "Menú de navegación"}
         >
           <button
             className="absolute top-5 right-6 text-navy/40 hover:text-navy transition-colors"
             onClick={() => setOpen(false)}
-            aria-label="Cerrar menú"
+            aria-label={lang === "en" ? "Close menu" : "Cerrar menú"}
           >
             <X size={22} />
           </button>
@@ -129,12 +130,12 @@ export function Navbar() {
             </a>
           ))}
           <a
-            href={`tel:${TODO_PHONE}`}
+            href="#reviews"
             onClick={() => setOpen(false)}
             className="mt-4 inline-flex items-center gap-2 font-semibold px-7 py-3 rounded-full bg-navy text-white"
           >
-            <Phone size={15} />
-            {t("nav.call")}
+            <Star size={15} />
+            {t("hero.cta1")}
           </a>
         </div>
       )}

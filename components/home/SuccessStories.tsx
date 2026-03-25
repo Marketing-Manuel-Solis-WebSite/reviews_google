@@ -11,7 +11,7 @@ import { useLanguage } from "@/lib/language-context";
 import { FloatingBg } from "@/components/ui/FloatingBg";
 
 export function SuccessStories() {
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
   const [active, setActive] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
@@ -125,18 +125,20 @@ export function SuccessStories() {
                     {review.author}
                   </p>
                   <p className="text-muted/50 text-[11px]">
-                    {formatRelativeDate(review.datePublished)}
+                    {formatRelativeDate(review.datePublished, lang)}
                   </p>
                 </div>
               </div>
-              <a
-                href={review.googleUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-navy text-white text-xs font-semibold hover:bg-navy-light transition-colors"
-              >
-                {t("stories.verify")} <ExternalLink size={11} />
-              </a>
+              {review.googleUrl && (
+                <a
+                  href={review.googleUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-navy text-white text-xs font-semibold hover:bg-navy-light transition-colors"
+                >
+                  {t("stories.verify")} <ExternalLink size={11} />
+                </a>
+              )}
             </div>
           </div>
         </div>

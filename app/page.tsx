@@ -7,12 +7,11 @@ import { FeaturedReview } from "@/components/home/FeaturedReview";
 import { SuccessStories } from "@/components/home/SuccessStories";
 import { ContactCTA } from "@/components/home/ContactCTA";
 import { PhotoGallery } from "@/components/home/PhotoGallery";
-import { FloatingBlobs } from "@/components/ui/FloatingBlobs";
+import { OfficeDirectory } from "@/components/home/OfficeDirectory";
 
 export default function Home() {
   return (
     <>
-      <FloatingBlobs />
       <Navbar />
       <main id="main-content">
         <Hero />
@@ -21,6 +20,7 @@ export default function Home() {
         <FeaturedReview />
         <SuccessStories />
         <PhotoGallery />
+        <OfficeDirectory />
         <ContactCTA />
       </main>
       <Footer />

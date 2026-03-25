@@ -35,12 +35,21 @@ const T: Record<string, Record<Lang, string>> = {
     es: "Abogados de Inmigración \u00B7 Desde 1990",
     en: "Immigration Lawyers \u00B7 Since 1990",
   },
-  "hero.h1.1": { es: "La confianza no", en: "Trust is not" },
-  "hero.h1.2": { es: "se promete.", en: "promised." },
-  "hero.h1.3": { es: "Se comprueba.", en: "It\u2019s proven." },
+  "hero.h1.1": {
+    es: "Abogado de Inmigración",
+    en: "Immigration Lawyer",
+  },
+  "hero.h1.2": {
+    es: "Manuel Solis",
+    en: "Manuel Solis",
+  },
+  "hero.tagline": {
+    es: "La confianza no se promete. Se comprueba.",
+    en: "Trust is not promised. It\u2019s proven.",
+  },
   "hero.sub": {
-    es: "Reseñas reales verificadas en Google de familias que confiaron en Manuel Solis Law Firm, oficina por oficina.",
-    en: "Real verified Google reviews from families who trusted Manuel Solis Law Firm, office by office.",
+    es: "Más de 35 años de experiencia y 50,000+ familias reunidas. Reseñas reales verificadas en Google de clientes en nuestras 15+ oficinas en Estados Unidos.",
+    en: "Over 35 years of experience and 50,000+ families reunited. Real verified Google reviews from clients across our 15+ offices in the United States.",
   },
   "hero.cta1": { es: "Ver Reseñas Verificadas", en: "See Verified Reviews" },
   "hero.cta2": { es: "Consulta Gratis", en: "Free Consultation" },
@@ -59,8 +68,11 @@ const T: Record<string, Record<Lang, string>> = {
   "band.offices": { es: "15+ oficinas en EE.UU.", en: "15+ U.S. offices" },
 
   /* ── Reviews ── */
-  "reviews.label": { es: "Prueba Social", en: "Social Proof" },
-  "reviews.title": { es: "Reseñas Verificadas", en: "Verified Reviews" },
+  "reviews.label": { es: "Reseñas en Google", en: "Google Reviews" },
+  "reviews.title": {
+    es: "Reseñas Verificadas del Abogado Manuel Solis",
+    en: "Verified Reviews of Attorney Manuel Solis",
+  },
   "reviews.google": { es: "en Google", en: "on Google" },
   "reviews.verified": { es: "Verificada", en: "Verified" },
   "reviews.seeGoogle": { es: "Ver en Google", en: "See on Google" },
@@ -72,8 +84,8 @@ const T: Record<string, Record<Lang, string>> = {
   /* ── Stories ── */
   "stories.label": { es: "Casos de Éxito", en: "Success Stories" },
   "stories.title": {
-    es: "Historias de Familias Reunidas",
-    en: "Stories of Reunited Families",
+    es: "Casos de Éxito en Inmigración",
+    en: "Immigration Success Stories",
   },
   "stories.verify": { es: "Verificar en Google", en: "Verify on Google" },
   "s-la.title": {
@@ -126,16 +138,22 @@ const T: Record<string, Record<Lang, string>> = {
   },
 
   /* ── Gallery ── */
-  "gallery.label": { es: "Nuestras Familias", en: "Our Families" },
-  "gallery.title": { es: "Rostros de Confianza", en: "Faces of Trust" },
+  "gallery.label": { es: "Familias Reunidas", en: "Reunited Families" },
+  "gallery.title": {
+    es: "Familias que Confiaron en el Abogado Manuel Solis",
+    en: "Families Who Trusted Attorney Manuel Solis",
+  },
   "gallery.subtitle": {
-    es: "Cada imagen representa una familia que confió en nosotros.",
-    en: "Each image represents a family that trusted us.",
+    es: "Más de 50,000 familias reunidas a través de nuestros servicios de inmigración en todo Estados Unidos.",
+    en: "Over 50,000 families reunited through our immigration services across the United States.",
   },
 
   /* ── Offices ── */
-  "offices.label": { es: "Cobertura Nacional", en: "National Coverage" },
-  "offices.title": { es: "Nuestras Oficinas", en: "Our Offices" },
+  "offices.label": { es: "15+ Oficinas en EE.UU.", en: "15+ U.S. Offices" },
+  "offices.title": {
+    es: "Oficinas del Abogado Manuel Solis en Estados Unidos",
+    en: "Manuel Solis Law Offices in the United States",
+  },
   "offices.houston": { es: "Área de Houston", en: "Houston Area" },
   "offices.texas": { es: "Texas", en: "Texas" },
   "offices.national": { es: "Fuera de Texas", en: "Outside Texas" },
@@ -171,6 +189,19 @@ const T: Record<string, Record<Lang, string>> = {
   "footer.nav": { es: "Navegación", en: "Navigation" },
   "footer.contact": { es: "Contacto", en: "Contact" },
   "footer.cases": { es: "Casos de Éxito", en: "Success Stories" },
+  "footer.services": {
+    es: "Servicios de Inmigración",
+    en: "Immigration Services",
+  },
+  "footer.visitSite": {
+    es: "Visitar Sitio Oficial",
+    en: "Visit Official Site",
+  },
+  "footer.mainSite": {
+    es: "Ir a manuelsolis.com",
+    en: "Go to manuelsolis.com",
+  },
+  "footer.followUs": { es: "Síguenos", en: "Follow Us" },
   "footer.disclaimer": {
     es: "Las reseñas son verificables en Google Maps. Resultados pasados no garantizan resultados futuros. Este sitio no constituye asesoría legal.",
     en: "Reviews are verifiable on Google Maps. Past results do not guarantee future outcomes. This site does not constitute legal advice.",
@@ -178,6 +209,12 @@ const T: Record<string, Record<Lang, string>> = {
   "footer.rights": {
     es: "Todos los derechos reservados.",
     en: "All rights reserved.",
+  },
+
+  /* ── CTA ── extra */
+  "cta.consult": {
+    es: "Consulta Gratis en manuelsolis.com",
+    en: "Free Consultation at manuelsolis.com",
   },
 };
 

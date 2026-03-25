@@ -1,23 +1,14 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import { gsap } from "@/lib/gsap";
-import { Star, Phone } from "lucide-react";
-import { STATS, TODO_PHONE } from "@/content/constants";
+import { Star, Phone, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import { STATS, PHONE, MAIN_SITE_URL } from "@/content/constants";
 import { REVIEWS } from "@/content/reviews";
 import { OFFICES } from "@/content/offices";
 import { getInitials } from "@/lib/utils";
 import { useLanguage } from "@/lib/language-context";
 import { FloatingBg } from "@/components/ui/FloatingBg";
-
-const INLINE_IDS = ["r-chi", "r-mem", "r-elp"];
-const INLINE_CARDS = REVIEWS.filter((r) => INLINE_IDS.includes(r.id));
-
-const BOTTOM_IDS = ["r-la", "r-har", "r-hou", "r-acc"];
-const BOTTOM_CARDS = REVIEWS.filter((r) => BOTTOM_IDS.includes(r.id));
-
-const FLOAT_IDS = ["r-dal", "r-den", "r-bel"];
-const FLOAT_CARDS = REVIEWS.filter((r) => FLOAT_IDS.includes(r.id));
 
 const STAT_KEYS = ["stat.years", "stat.offices", "stat.families", "stat.stars"];
 
@@ -25,90 +16,94 @@ export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const statRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const counted = useRef(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const autoRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const { t } = useLanguage();
 
+  const [active, setActive] = useState(0);
+  const [direction, setDirection] = useState(1);
+
+  const review = REVIEWS[active];
+  const office = OFFICES.find((o) => o.id === review.officeId);
+
+  const goTo = useCallback(
+    (idx: number, dir: number) => {
+      setDirection(dir);
+      setActive(idx);
+    },
+    []
+  );
+
+  const next = useCallback(() => {
+    goTo((active + 1) % REVIEWS.length, 1);
+  }, [active, goTo]);
+
+  const prev = useCallback(() => {
+    goTo((active - 1 + REVIEWS.length) % REVIEWS.length, -1);
+  }, [active, goTo]);
+
+  /* Auto-rotate */
+  useEffect(() => {
+    autoRef.current = setInterval(next, 5000);
+    return () => {
+      if (autoRef.current) clearInterval(autoRef.current);
+    };
+  }, [next]);
+
+  const resetAuto = useCallback(() => {
+    if (autoRef.current) clearInterval(autoRef.current);
+    autoRef.current = setInterval(next, 5000);
+  }, [next]);
+
+  /* Animate card transition */
+  useEffect(() => {
+    if (!cardRef.current) return;
+    gsap.fromTo(
+      cardRef.current,
+      { opacity: 0, x: direction * 40 },
+      { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }
+    );
+  }, [active, direction]);
+
+  /* Touch swipe */
+  const touchStart = useRef(0);
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStart.current = e.touches[0].clientX;
+  };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const diff = touchStart.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) next();
+      else prev();
+      resetAuto();
+    }
+  };
+
+  /* Hero intro animations */
   useEffect(() => {
     if (!sectionRef.current) return;
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
       tl.from(".hero-label", { y: 20, opacity: 0, duration: 0.7, delay: 0.3 })
         .from(".hero-headline", { y: 30, opacity: 0, duration: 1 }, "-=0.3")
-        .from(
-          ".hero-inline-card",
-          {
-            y: 30,
-            opacity: 0,
-            stagger: 0.12,
-            duration: 0.7,
-            ease: "power2.out",
-          },
-          "-=0.4"
-        )
+        .from(".hero-tagline", { y: 15, opacity: 0, duration: 0.7 }, "-=0.5")
         .from(".hero-sub", { y: 20, opacity: 0, duration: 0.7 }, "-=0.4")
         .from(
           ".hero-stat",
           { y: 20, opacity: 0, stagger: 0.1, duration: 0.6 },
           "-=0.3"
         )
+        .from(".hero-carousel", { y: 30, opacity: 0, duration: 0.8 }, "-=0.3")
         .from(
           ".hero-cta",
           { y: 15, opacity: 0, stagger: 0.1, duration: 0.5 },
           "-=0.2"
-        )
-        .from(
-          ".hero-bottom-card",
-          { y: 25, opacity: 0, stagger: 0.08, duration: 0.6, ease: "power2.out" },
-          "-=0.3"
-        )
-        .from(
-          ".hero-float-card",
-          { y: 25, opacity: 0, stagger: 0.1, duration: 0.6, ease: "power2.out" },
-          "-=0.3"
         );
-
-      gsap.utils.toArray<HTMLElement>(".hero-float-card").forEach((card, i) => {
-        gsap.to(card, {
-          y: i % 2 === 0 ? -8 : 8,
-          rotation: i % 2 === 0 ? 0.4 : -0.4,
-          duration: 3.5 + i * 0.6,
-          ease: "sine.inOut",
-          yoyo: true,
-          repeat: -1,
-          delay: i * 0.35,
-        });
-      });
-
-      gsap.utils
-        .toArray<HTMLElement>(".hero-inline-card")
-        .forEach((card, i) => {
-          gsap.to(card, {
-            y: i % 2 === 0 ? -5 : 5,
-            rotation: i % 2 === 0 ? 0.2 : -0.2,
-            duration: 3.5 + i * 0.5,
-            ease: "sine.inOut",
-            yoyo: true,
-            repeat: -1,
-            delay: i * 0.3,
-          });
-        });
-
-      gsap.utils
-        .toArray<HTMLElement>(".hero-bottom-card")
-        .forEach((card, i) => {
-          gsap.to(card, {
-            y: i % 2 === 0 ? -7 : 7,
-            rotation: i % 2 === 0 ? 0.3 : -0.3,
-            duration: 4 + i * 0.6,
-            ease: "sine.inOut",
-            yoyo: true,
-            repeat: -1,
-            delay: i * 0.5,
-          });
-        });
     }, sectionRef);
     return () => ctx.revert();
   }, []);
 
+  /* Stat counter animation */
   useEffect(() => {
     if (counted.current) return;
     counted.current = true;
@@ -135,12 +130,6 @@ export function Hero() {
     });
   }, []);
 
-  const rotations = [
-    "-rotate-[1.5deg]",
-    "rotate-[0.8deg]",
-    "-rotate-[0.5deg]",
-  ];
-
   return (
     <section
       id="inicio"
@@ -149,173 +138,156 @@ export function Hero() {
     >
       <FloatingBg />
       <div className="relative z-10 max-w-6xl mx-auto px-6 pt-28 pb-20 w-full">
-        <div>
-          <div>
-            <p className="hero-label text-[11px] font-semibold tracking-[0.3em] uppercase text-gold mb-6">
-              {t("hero.label")}
-            </p>
+        <p className="hero-label text-[11px] font-semibold tracking-[0.3em] uppercase text-gold mb-6">
+          {t("hero.label")}
+        </p>
 
-            <h1 className="hero-headline font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[4.2rem] font-bold leading-[1.08] text-navy mb-8">
-              {t("hero.h1.1")}{" "}
-              <br className="hidden sm:block" />
-              {t("hero.h1.2")}{" "}
-              <span className="text-gold">{t("hero.h1.3")}</span>
-            </h1>
+        <h1 className="hero-headline font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[4.2rem] font-bold leading-[1.08] text-navy mb-3">
+          {t("hero.h1.1")}{" "}
+          <br className="hidden sm:block" />
+          <span className="text-gold">{t("hero.h1.2")}</span>
+        </h1>
 
-            {/* Inline floating cards */}
-            <div className="flex gap-3 mb-8 overflow-visible pb-4">
-              {INLINE_CARDS.map((review, i) => {
-                const office = OFFICES.find((o) => o.id === review.officeId);
-                return (
-                  <div
-                    key={review.id}
-                    className={`hero-inline-card shrink-0 w-[240px] sm:w-[260px] bg-white rounded-xl p-4 border border-border/50 shadow-[0_8px_32px_rgba(16,38,63,0.06)] ${rotations[i]}`}
-                  >
-                    <div className="flex items-center gap-1 mb-2">
-                      {Array.from({ length: 5 }, (_, j) => (
-                        <Star
-                          key={j}
-                          size={10}
-                          className="fill-gold text-gold"
-                        />
-                      ))}
-                      <span className="ml-auto text-[9px] text-muted/40">
-                        Google
-                      </span>
-                    </div>
-                    <p className="text-navy/70 text-[12px] leading-relaxed mb-2">
-                      {review.text}
-                    </p>
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 rounded-full bg-navy/5 flex items-center justify-center text-[9px] font-bold text-navy/40">
-                        {getInitials(review.author)}
-                      </div>
-                      <div>
-                        <p className="text-navy text-[11px] font-semibold">
-                          {review.author}
-                        </p>
-                        <p className="text-muted/40 text-[9px]">
-                          {office?.name}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+        <p className="hero-tagline font-serif text-xl sm:text-2xl md:text-3xl text-navy/50 italic mb-8">
+          {t("hero.tagline")}
+        </p>
+
+        <p className="hero-sub text-muted text-base sm:text-lg max-w-xl mb-10 leading-relaxed">
+          {t("hero.sub")}
+        </p>
+
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-10">
+          {STATS.map((stat, idx) => (
+            <div key={idx} className="hero-stat">
+              <span
+                ref={(el) => {
+                  statRefs.current[idx] = el;
+                }}
+                className="block font-serif text-3xl sm:text-4xl font-bold text-navy"
+              >
+                0
+              </span>
+              <span className="block mt-1 text-[11px] text-muted/60 uppercase tracking-wider">
+                {t(STAT_KEYS[idx])}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* ── Interactive Review Carousel ── */}
+        <div
+          className="hero-carousel mb-10"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
+          <div
+            ref={cardRef}
+            className="review-card-3d !rounded-2xl p-5 sm:p-7 border border-border/40 max-w-2xl"
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex gap-0.5">
+                {Array.from({ length: 5 }, (_, i) => (
+                  <Star key={i} size={14} className="fill-gold text-gold" />
+                ))}
+              </div>
+              <span className="text-[10px] text-muted/40 font-medium">Google</span>
             </div>
 
-            <p className="hero-sub text-muted text-base sm:text-lg max-w-lg mb-10 leading-relaxed">
-              {t("hero.sub")}
+            {/* Review text — full on mobile */}
+            <p className="text-navy/80 text-sm sm:text-[15px] leading-relaxed mb-5 font-serif italic">
+              &ldquo;{review.text}&rdquo;
             </p>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-10">
-              {STATS.map((stat, idx) => (
-                <div key={idx} className="hero-stat">
-                  <span
-                    ref={(el) => {
-                      statRefs.current[idx] = el;
-                    }}
-                    className="block font-serif text-3xl sm:text-4xl font-bold text-navy"
-                  >
-                    0
-                  </span>
-                  <span className="block mt-1 text-[11px] text-muted/60 uppercase tracking-wider">
-                    {t(STAT_KEYS[idx])}
-                  </span>
+            {/* Author + link */}
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-full bg-navy/5 flex items-center justify-center text-[10px] font-bold text-navy/40">
+                  {getInitials(review.author)}
                 </div>
+                <div>
+                  <p className="text-navy text-sm font-semibold">
+                    {review.author}
+                  </p>
+                  <p className="text-muted/50 text-[11px]">
+                    {office?.name}
+                  </p>
+                </div>
+              </div>
+              {review.googleUrl && (
+                <a
+                  href={review.googleUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="shrink-0 inline-flex items-center gap-1 text-[11px] text-gold/60 hover:text-gold font-medium transition-colors"
+                >
+                  <ExternalLink size={12} />
+                  <span className="hidden sm:inline">Google</span>
+                </a>
+              )}
+            </div>
+          </div>
+
+          {/* Controls */}
+          <div className="flex items-center gap-4 mt-5 max-w-2xl">
+            <button
+              onClick={() => {
+                prev();
+                resetAuto();
+              }}
+              className="w-8 h-8 rounded-full border border-border/50 flex items-center justify-center text-navy/30 hover:text-navy hover:border-navy/30 transition-colors"
+              aria-label="Previous review"
+            >
+              <ChevronLeft size={16} />
+            </button>
+
+            {/* Dots */}
+            <div className="flex-1 flex items-center justify-center gap-1.5">
+              {REVIEWS.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => {
+                    goTo(i, i > active ? 1 : -1);
+                    resetAuto();
+                  }}
+                  className={`rounded-full transition-all duration-300 ${
+                    active === i
+                      ? "w-6 h-1.5 bg-gold"
+                      : "w-1.5 h-1.5 bg-navy/10 hover:bg-navy/20"
+                  }`}
+                  aria-label={`Review ${i + 1}`}
+                />
               ))}
             </div>
 
-            {/* ── 4 floating mini-cards below stats ── */}
-            <div className="flex gap-2.5 mb-4 overflow-visible pb-2 hide-scrollbar">
-              {BOTTOM_CARDS.map((review, i) => {
-                const office = OFFICES.find((o) => o.id === review.officeId);
-                const rots = [
-                  "rotate-[1deg]",
-                  "-rotate-[0.8deg]",
-                  "rotate-[0.5deg]",
-                  "-rotate-[1.2deg]",
-                ];
-                return (
-                  <div
-                    key={review.id}
-                    className={`hero-bottom-card shrink-0 w-[190px] bg-white rounded-lg p-3 border border-border/40 shadow-[0_4px_20px_rgba(16,38,63,0.05)] ${rots[i]}`}
-                  >
-                    <div className="flex items-center gap-0.5 mb-1.5">
-                      {Array.from({ length: 5 }, (_, j) => (
-                        <Star key={j} size={8} className="fill-gold text-gold" />
-                      ))}
-                    </div>
-                    <p className="text-navy/60 text-[10px] leading-relaxed line-clamp-2 mb-1.5">
-                      {review.text}
-                    </p>
-                    <p className="text-navy/80 text-[9px] font-semibold">
-                      {review.author}
-                      <span className="text-muted/40 font-normal">
-                        {" "}&middot; {office?.name}
-                      </span>
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* ── 3 floating cards (Marina, Claudia, Rogelio) ── */}
-            <div className="flex gap-3 mb-10 overflow-visible pb-3">
-              {FLOAT_CARDS.map((review, i) => {
-                const office = OFFICES.find((o) => o.id === review.officeId);
-                const rots = [
-                  "-rotate-[1deg]",
-                  "rotate-[0.6deg]",
-                  "-rotate-[0.4deg]",
-                ];
-                return (
-                  <div
-                    key={review.id}
-                    className={`hero-float-card shrink-0 w-[220px] sm:w-[240px] bg-white rounded-xl p-3.5 border border-border/50 shadow-[0_6px_24px_rgba(16,38,63,0.06)] ${rots[i]}`}
-                  >
-                    <div className="flex items-center gap-0.5 mb-2">
-                      {Array.from({ length: 5 }, (_, j) => (
-                        <Star key={j} size={9} className="fill-gold text-gold" />
-                      ))}
-                      <span className="ml-auto text-[8px] text-muted/40">Google</span>
-                    </div>
-                    <p className="text-navy/70 text-[11px] leading-relaxed mb-2">
-                      {review.text}
-                    </p>
-                    <div className="flex items-center gap-1.5">
-                      <div className="w-6 h-6 rounded-full bg-navy/5 flex items-center justify-center text-[8px] font-bold text-navy/40">
-                        {getInitials(review.author)}
-                      </div>
-                      <div>
-                        <p className="text-navy text-[10px] font-semibold">
-                          {review.author}
-                        </p>
-                        <p className="text-muted/40 text-[8px]">
-                          {office?.name}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-3">
-              <a
-                href="#reviews"
-                className="hero-cta inline-flex items-center justify-center gap-2 font-semibold px-7 py-3.5 rounded-full text-[15px] bg-navy text-white hover:bg-navy-light transition-all duration-300"
-              >
-                <Star size={15} /> {t("hero.cta1")}
-              </a>
-              <a
-                href={`tel:${TODO_PHONE}`}
-                className="hero-cta inline-flex items-center justify-center gap-2 font-semibold px-7 py-3.5 rounded-full text-[15px] text-navy border border-navy/15 hover:border-navy/30 transition-all duration-300"
-              >
-                <Phone size={14} /> {t("hero.cta2")}
-              </a>
-            </div>
+            <button
+              onClick={() => {
+                next();
+                resetAuto();
+              }}
+              className="w-8 h-8 rounded-full border border-border/50 flex items-center justify-center text-navy/30 hover:text-navy hover:border-navy/30 transition-colors"
+              aria-label="Next review"
+            >
+              <ChevronRight size={16} />
+            </button>
           </div>
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-3">
+          <a
+            href="#reviews"
+            className="hero-cta inline-flex items-center justify-center gap-2 font-semibold px-7 py-3.5 rounded-full text-[15px] bg-navy text-white hover:bg-navy-light transition-all duration-300"
+          >
+            <Star size={15} /> {t("hero.cta1")}
+          </a>
+          <a
+            href={MAIN_SITE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hero-cta inline-flex items-center justify-center gap-2 font-semibold px-7 py-3.5 rounded-full text-[15px] text-navy border border-navy/15 hover:border-navy/30 transition-all duration-300"
+          >
+            <Phone size={14} /> {t("hero.cta2")}
+          </a>
         </div>
       </div>
 

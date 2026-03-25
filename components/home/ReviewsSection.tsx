@@ -70,7 +70,7 @@ export function ReviewsSection() {
           <p className="text-[11px] font-semibold tracking-[0.3em] uppercase text-gold mb-4">
             {t("reviews.label")}
           </p>
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-navy leading-tight mb-4">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-navy leading-tight mb-4">
             {t("reviews.title")}
           </h2>
           <div className="flex items-center justify-center gap-2">
@@ -142,19 +142,21 @@ export function ReviewsSection() {
                     </p>
                     <p className="text-muted/50 text-[11px]">
                       {office?.name} &middot;{" "}
-                      {formatRelativeDate(review.datePublished)}
+                      {formatRelativeDate(review.datePublished, lang)}
                     </p>
                   </div>
-                  <a
-                    href={review.googleUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="shrink-0 text-muted/30 hover:text-gold transition-colors"
-                    aria-label={`${t("reviews.seeGoogle")} - ${review.author}`}
-                  >
-                    <ExternalLink size={14} />
-                  </a>
+                  {review.googleUrl && (
+                    <a
+                      href={review.googleUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="shrink-0 text-muted/30 hover:text-gold transition-colors"
+                      aria-label={`${t("reviews.seeGoogle")} - ${review.author}`}
+                    >
+                      <ExternalLink size={14} />
+                    </a>
+                  )}
                 </div>
               </button>
             );
@@ -214,7 +216,7 @@ export function ReviewsSection() {
                     </p>
                     <p className="text-muted/50 text-sm">
                       {office?.name} &middot;{" "}
-                      {formatRelativeDate(selectedReview.datePublished)}
+                      {formatRelativeDate(selectedReview.datePublished, lang)}
                     </p>
                   </div>
                   <div className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-100">
@@ -225,16 +227,18 @@ export function ReviewsSection() {
                   </div>
                 </div>
 
-                <a
-                  href={selectedReview.googleUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-navy text-white text-sm font-semibold hover:bg-navy-light transition-colors"
-                >
-                  <GoogleIcon size={14} />
-                  {t("reviews.seeGoogle")}
-                  <ExternalLink size={12} />
-                </a>
+                {selectedReview.googleUrl && (
+                  <a
+                    href={selectedReview.googleUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-navy text-white text-sm font-semibold hover:bg-navy-light transition-colors"
+                  >
+                    <GoogleIcon size={14} />
+                    {t("reviews.seeGoogle")}
+                    <ExternalLink size={12} />
+                  </a>
+                )}
               </div>
             );
           })()}

@@ -2,8 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
-import { Phone, MapPin } from "lucide-react";
-import { TODO_PHONE, TODO_PHONE_DISPLAY } from "@/content/constants";
+import { ArrowRight, MapPin } from "lucide-react";
+import { MAIN_SITE_URL } from "@/content/constants";
 import { useLanguage } from "@/lib/language-context";
 import { FloatingBg } from "@/components/ui/FloatingBg";
 
@@ -47,24 +47,14 @@ export function ContactCTA() {
           {t("cta.sub")}
         </p>
 
-        <a
-          href={`tel:${TODO_PHONE}`}
-          className="inline-flex items-center gap-3 mb-10 group"
-        >
-          <span className="w-12 h-12 rounded-full border-2 border-gold/30 flex items-center justify-center text-gold group-hover:bg-gold/10 transition-colors duration-300">
-            <Phone size={20} />
-          </span>
-          <span className="text-2xl md:text-3xl font-bold text-gold font-serif">
-            {TODO_PHONE_DISPLAY}
-          </span>
-        </a>
-
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <a
-            href={`tel:${TODO_PHONE}`}
+            href={MAIN_SITE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 font-semibold px-7 py-3.5 rounded-full text-[15px] bg-gold text-charcoal hover:brightness-110 transition-all duration-300"
           >
-            <Phone size={15} /> {t("cta.call")}
+            <ArrowRight size={15} /> {t("cta.consult")}
           </a>
           <a
             href="#oficinas"

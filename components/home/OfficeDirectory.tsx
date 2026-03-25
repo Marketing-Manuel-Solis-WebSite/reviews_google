@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { OFFICES } from "@/content/offices";
 import { REVIEWS } from "@/content/reviews";
-import { TODO_PHONE_DISPLAY, TODO_PHONE } from "@/content/constants";
+import { PHONE_DISPLAY, PHONE, MAIN_SITE_URL } from "@/content/constants";
 import type { OfficeRegion } from "@/lib/types";
 import { useLanguage } from "@/lib/language-context";
 import { FloatingBg } from "@/components/ui/FloatingBg";
@@ -79,11 +79,11 @@ export function OfficeDirectory() {
             {t("offices.title")}
           </h2>
           <a
-            href={`tel:${TODO_PHONE}`}
+            href={`tel:${PHONE}`}
             className="inline-flex items-center gap-2 text-gold font-semibold text-lg hover:text-gold-light transition-colors"
           >
             <Phone size={18} />
-            {TODO_PHONE_DISPLAY}
+            {PHONE_DISPLAY}
           </a>
         </div>
 

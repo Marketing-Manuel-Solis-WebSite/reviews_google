@@ -22,7 +22,7 @@ export interface Review {
   rating: number;
   datePublished: string;
   text: string;
-  googleUrl: string;
+  googleUrl?: string;
   featured?: boolean;
 }
 

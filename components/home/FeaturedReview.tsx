@@ -80,8 +80,7 @@ export function FeaturedReview() {
     >
       <FloatingBg dark />
 
-      {/* Fixed-height — never resizes regardless of content */}
-      <div className="relative z-10 h-[720px] sm:h-[680px] md:h-[660px] flex flex-col items-center justify-center overflow-hidden px-6">
+      <div className="relative z-10 min-h-[520px] py-16 md:py-24 flex flex-col items-center justify-center overflow-hidden px-6">
         <div className="max-w-3xl mx-auto w-full text-center">
           <p className="text-[11px] font-semibold tracking-[0.3em] uppercase text-gold/60 mb-8">
             {t("featured.label")}
@@ -108,19 +107,21 @@ export function FeaturedReview() {
                 </p>
                 <p className="text-white/30 text-xs">
                   {office?.name} &middot;{" "}
-                  {formatRelativeDate(review.datePublished)}
+                  {formatRelativeDate(review.datePublished, lang)}
                 </p>
               </div>
             </div>
 
-            <a
-              href={review.googleUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-gold/50 hover:text-gold text-xs font-medium transition-colors duration-300"
-            >
-              {t("featured.verify")} <ExternalLink size={11} />
-            </a>
+            {review.googleUrl && (
+              <a
+                href={review.googleUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-gold/50 hover:text-gold text-xs font-medium transition-colors duration-300"
+              >
+                {t("featured.verify")} <ExternalLink size={11} />
+              </a>
+            )}
           </div>
 
           {pool.length > 1 && (
