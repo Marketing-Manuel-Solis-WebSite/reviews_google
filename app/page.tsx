@@ -7,6 +7,7 @@ import { FeaturedReview } from "@/components/home/FeaturedReview";
 import { SuccessStories } from "@/components/home/SuccessStories";
 import { ContactCTA } from "@/components/home/ContactCTA";
 import { PhotoGallery } from "@/components/home/PhotoGallery";
+import { ReviewsStrip } from "@/components/home/ReviewsStrip";
 import { OfficeDirectory } from "@/components/home/OfficeDirectory";
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
         <FeaturedReview />
         <SuccessStories />
         <PhotoGallery />
+        <ReviewsStrip />
         <OfficeDirectory />
         <ContactCTA />
       </main>

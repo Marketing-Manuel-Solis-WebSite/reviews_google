@@ -102,6 +102,26 @@ body {
   animation-play-state: paused;
 }
 
+/* ── Reviews Marquee ── */
+
+@keyframes reviews-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.reviews-marquee-track {
+  animation: reviews-scroll 45s linear infinite;
+  width: max-content;
+}
+
+.reviews-marquee-track:hover {
+  animation-play-state: paused;
+}
+
 /* ── Hide scrollbar ── */
 
 .hide-scrollbar::-webkit-scrollbar {
@@ -239,7 +259,8 @@ dialog[open] {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  .marquee-track {
+  .marquee-track,
+  .reviews-marquee-track {
     animation: none !important;
   }
 }

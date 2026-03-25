@@ -163,7 +163,7 @@ export function JsonLd() {
         name: "¿Cuántas oficinas tiene el Abogado Manuel Solis?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Manuel Solis Law Firm cuenta con más de 15 oficinas en Estados Unidos: Houston (7 ubicaciones), Dallas, El Paso, Harlingen, League City en Texas, además de oficinas en Chicago (IL), Memphis (TN), Denver (CO) y Los Angeles (CA).",
+          text: "Law Offices of Manuel Solis cuenta con más de 15 oficinas en Estados Unidos: Houston (7 ubicaciones), Dallas, El Paso, Harlingen, League City en Texas, además de oficinas en Chicago (IL), Memphis (TN), Denver (CO) y Los Angeles (CA).",
         },
       },
       {
@@ -171,7 +171,7 @@ export function JsonLd() {
         name: "¿Cuántos años de experiencia tiene Manuel Solis?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Manuel Solis Law Firm tiene más de 35 años de experiencia en derecho de inmigración, desde 1990, habiendo ayudado a más de 50,000 familias con sus trámites migratorios.",
+          text: "Law Offices of Manuel Solis tiene más de 35 años de experiencia en derecho de inmigración, desde 1990, habiendo ayudado a más de 50,000 familias con sus trámites migratorios.",
         },
       },
       {
@@ -203,7 +203,7 @@ export function JsonLd() {
         name: "How many offices does Manuel Solis have?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Manuel Solis Law Firm has 15+ offices across the United States: Houston (7 locations), Dallas, El Paso, Harlingen, and League City in Texas, plus offices in Chicago (IL), Memphis (TN), Denver (CO), and Los Angeles (CA).",
+          text: "Law Offices of Manuel Solis has 15+ offices across the United States: Houston (7 locations), Dallas, El Paso, Harlingen, and League City in Texas, plus offices in Chicago (IL), Memphis (TN), Denver (CO), and Los Angeles (CA).",
         },
       },
       {
@@ -252,7 +252,7 @@ export function JsonLd() {
   const webpage = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: "Reseñas Verificadas — Manuel Solis Law Firm",
+    name: "Reseñas Verificadas — Law Offices of Manuel Solis",
     description:
       "Reseñas reales verificadas en Google de familias que confiaron en el Abogado Manuel Solis. 35+ años, 50,000+ familias reunidas, 15+ oficinas en EE.UU.",
     url: CANONICAL_URL,

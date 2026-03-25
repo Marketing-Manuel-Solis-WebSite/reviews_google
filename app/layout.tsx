@@ -23,7 +23,7 @@ const manrope = Manrope({
 
 export const metadata: Metadata = {
   title:
-    "Abogados de Inmigración | Manuel Solis Law Firm | 15+ Oficinas en EE.UU.",
+    "Abogados de Inmigración | Law Offices of Manuel Solis | 15+ Oficinas en EE.UU.",
   description:
     "Abogado de inmigración Manuel Solis: 35+ años de experiencia, 50,000+ familias reunidas, 15+ oficinas en Estados Unidos. Reseñas reales verificadas en Google. Residencia, Green Card, ciudadanía, visas, asilo y más.",
   metadataBase: new URL(CANONICAL_URL),
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     "immigration lawyer",
     "Manuel Solis",
     "abogado Manuel Solis",
-    "Manuel Solis Law Firm",
+    "Law Offices of Manuel Solis",
     "abogado inmigración Houston",
     "immigration attorney",
     "abogado green card",
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title:
-      "Abogados de Inmigración | Manuel Solis Law Firm | Reseñas Verificadas",
+      "Abogados de Inmigración | Law Offices of Manuel Solis | Reseñas Verificadas",
     description:
       "35+ años reuniendo familias. 50,000+ casos de éxito. Reseñas reales verificadas en Google, oficina por oficina. 15+ oficinas en Estados Unidos.",
     type: "website",
@@ -75,13 +75,13 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Manuel Solis Law Firm — Abogados de Inmigración",
+        alt: "Law Offices of Manuel Solis — Abogados de Inmigración",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Abogados de Inmigración | Manuel Solis Law Firm",
+    title: "Abogados de Inmigración | Law Offices of Manuel Solis",
     description:
       "35+ años reuniendo familias. 50,000+ familias. Reseñas verificadas en Google.",
     images: ["/og-image.jpg"],

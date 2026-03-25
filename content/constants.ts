@@ -4,7 +4,7 @@ import type { Stat } from "@/lib/types";
    Site-wide constants
    ═══════════════════════════════════════════════════ */
 
-export const SITE_NAME = "Manuel Solis Law Firm";
+export const SITE_NAME = "Law Offices of Manuel Solis";
 export const SITE_TAGLINE = "La confianza no se promete. Se comprueba.";
 
 export const MAIN_SITE_URL = "https://www.manuelsolis.com";

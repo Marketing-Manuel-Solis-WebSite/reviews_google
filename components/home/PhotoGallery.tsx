@@ -7,13 +7,13 @@ import { useLanguage } from "@/lib/language-context";
 
 const IMAGES = [
   { src: "/bertha.png",    name: "Bertha Isabel",       alt: "Cliente Bertha Isabel — familia reunida por abogado de inmigración Manuel Solis" },
-  { src: "/edgar.png",     name: "Edgar Guadalupe",     alt: "Cliente Edgar Guadalupe — caso de inmigración exitoso con Manuel Solis Law Firm" },
+  { src: "/edgar.png",     name: "Edgar Guadalupe",     alt: "Cliente Edgar Guadalupe — caso de inmigración exitoso con Law Offices of Manuel Solis" },
   { src: "/juan.png",      name: "Juan Ramón",          alt: "Cliente Juan Ramón — residencia obtenida con el abogado Manuel Solis" },
   { src: "/margarita.png", name: "Margarita Reyes",     alt: "Cliente Margarita Reyes — trámite migratorio exitoso con Manuel Solis" },
-  { src: "/marina.png",    name: "Marina Salgado",      alt: "Cliente Marina Salgado — familia reunida gracias a Manuel Solis Law Firm" },
+  { src: "/marina.png",    name: "Marina Salgado",      alt: "Cliente Marina Salgado — familia reunida gracias a Law Offices of Manuel Solis" },
   { src: "/monseraf.png",  name: "Monseraf Meléndez",   alt: "Cliente Monseraf Meléndez — caso de inmigración con abogado Manuel Solis" },
   { src: "/nidia.png",     name: "Nidia Elena",         alt: "Cliente Nidia Elena — proceso migratorio exitoso con Manuel Solis" },
-  { src: "/pedro.png",     name: "Pedro Rogel",         alt: "Cliente Pedro Rogel — green card obtenida con Manuel Solis Law Firm" },
+  { src: "/pedro.png",     name: "Pedro Rogel",         alt: "Cliente Pedro Rogel — green card obtenida con Law Offices of Manuel Solis" },
 ];
 
 export function PhotoGallery() {

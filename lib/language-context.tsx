@@ -53,6 +53,7 @@ const T: Record<string, Record<Lang, string>> = {
   },
   "hero.cta1": { es: "Ver Reseñas Verificadas", en: "See Verified Reviews" },
   "hero.cta2": { es: "Consulta Gratis", en: "Free Consultation" },
+  "hero.families_short": { es: "familias reunidas", en: "families reunited" },
 
   /* ── Stats ── */
   "stat.years": { es: "Años de Experiencia", en: "Years of Experience" },
@@ -76,6 +77,7 @@ const T: Record<string, Record<Lang, string>> = {
   "reviews.google": { es: "en Google", en: "on Google" },
   "reviews.verified": { es: "Verificada", en: "Verified" },
   "reviews.seeGoogle": { es: "Ver en Google", en: "See on Google" },
+  "reviews.strip_title": { es: "Lo Que Dicen Nuestros Clientes", en: "What Our Clients Say" },
 
   /* ── Featured ── */
   "featured.label": { es: "Reseña Destacada", en: "Featured Review" },
