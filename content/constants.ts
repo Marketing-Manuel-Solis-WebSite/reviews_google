@@ -8,7 +8,7 @@ export const SITE_NAME = "Manuel Solis Law Firm";
 export const SITE_TAGLINE = "La confianza no se promete. Se comprueba.";
 
 export const MAIN_SITE_URL = "https://www.manuelsolis.com";
-export const CANONICAL_URL = "https://reviews.manuelsolis.com";
+export const CANONICAL_URL = "https://manuelsolisreviews.com";
 
 export const PHONE = "+1-888-676-1238";
 export const PHONE_DISPLAY = "1-888-676-1238";
