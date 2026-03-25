@@ -4,6 +4,7 @@ import { Cormorant_Garamond, Manrope } from "next/font/google";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SkipToContent } from "@/components/site/SkipToContent";
 import { LanguageProvider } from "@/lib/language-context";
+import { Analytics } from "@vercel/analytics/next";
 import { CANONICAL_URL, SITE_NAME } from "@/content/constants";
 import "./globals.css";
 
@@ -122,6 +123,7 @@ gtag('config', 'G-NK4Q6B1G5C');`}
           <SkipToContent />
           <JsonLd />
           {children}
+          <Analytics />
         </LanguageProvider>
       </body>
     </html>
