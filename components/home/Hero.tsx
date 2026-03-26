@@ -162,7 +162,7 @@ export function Hero() {
             {/* Mobile/Tablet: circular photo strip */}
             <div className="hero-photos flex items-center mb-8 lg:hidden">
               <div className="flex -space-x-2">
-                {["/bertha.png", "/marina.png", "/pedro.png", "/margarita.png", "/edgar.png"].map(
+                {["/bertha.png", "/monseraf.png", "/pedro.png", "/margarita.png", "/edgar.png"].map(
                   (src, i) => (
                     <div
                       key={i}
@@ -350,8 +350,8 @@ export function Hero() {
               </div>
               <div className="relative rounded-2xl overflow-hidden shadow-lg">
                 <Image
-                  src="/marina.png"
-                  alt="Cliente Marina Salgado — caso exitoso con Law Offices of Manuel Solis"
+                  src="/monseraf.png"
+                  alt="Cliente Monseraf Meléndez — caso exitoso con Law Offices of Manuel Solis"
                   fill
                   className="object-cover"
                   sizes="200px"
